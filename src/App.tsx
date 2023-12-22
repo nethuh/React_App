@@ -4,10 +4,13 @@ import './App.css';
 import {NavBar} from "./view/NavBar/NavBar";
 import {MainContent} from "./view/mainContent/MainContent";
 import {Footer} from "./view/footer/Footer";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {DefaultLayout} from "./view/Common/DefaultLayout/DefaultLayout";
+import {Login} from "./view/pages/Login/Login";
 
 function App() {
   return (
+      <>
       <BrowserRouter>
         {/*    <div style={{backgroundColor: "red" , padding: 10, textAlign: "center"}}> Inline css Box</div>*/}
         {/*<div className= "box">External Css Box </div>*/}
@@ -15,10 +18,14 @@ function App() {
         {/*<h1 className="text-center text-black">*/}
         {/*    Hello world!*/}
         {/*</h1>*/}
-        <NavBar/>
-        <MainContent/>
-        <Footer/>
+          <Routes>
+              <Route path="/*" Component={DefaultLayout}></Route>
+              <Route path="/Login" Component={Login}></Route>
+          </Routes>
       </BrowserRouter>
+
+      </>
+
   );
 }
 
