@@ -12,22 +12,27 @@ export class NavBar extends Component {
                     <h1 className="pt-2 text-pink-700 font-bold text-4xl mt-2 ml-3">Piggy</h1>
                 </div>
 
-                <ul className="list-none flex mt-1">
-                    <li className="mr-2 text-[11px] text-white">
+                <div className="bg-pink-50 rounded-2xl w-96 h-12 p-1 mt-2">
+                    <h1 className="text-gray-400 text-center p-2">Search</h1>
+                </div>
+
+                <ul className="flex mt-2">
+                    <li className="p-2">
                         <Link to="/">Home</Link>
                     </li>
-                    <li className="mr-2 text-[11px] text-white">
+                    <li className="p-2">
                         <Link to="/about">About</Link>
                     </li>
-                    <li className="mr-2 text-[11px] text-white">
+                    <li className="p-2">
                         <Link to="/contact">Contact</Link>
                     </li>
+                    <li>
+                        <button
+                            className="bg-pink-800 text-white w-16 h-10 rounded-s hover:bg-teal-100 hover:text-black hover:font-bold">
+                            <Link to="/Login">Log In</Link>
+                        </button>
+                    </li>
                 </ul>
-                <button className="text-[10px] text-[#e6f0e6]
-                bg-blue-400 pl-3 pr-3
-                hover:text-black
-                ">Sign In
-                </button>
             </div>
         );
     }
