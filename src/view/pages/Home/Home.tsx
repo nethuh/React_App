@@ -29,10 +29,11 @@ export class Home extends Component {
 
     render() {
 
+        // @ts-ignore
         const { data } = this.state;
 
         return (
-            <div className="flex justify-between pl-64 pr-64 pt-40 pb-44 bg-teal-200">
+            <div className="flex justify-between pl-64 pr-64 pt-40 pb-44 bg-pink-200">
                 {data.map((product: any) => (
                     <Product key={product.id} data={product} />
                 ))}
