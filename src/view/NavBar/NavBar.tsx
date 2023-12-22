@@ -1,14 +1,17 @@
 import {Component} from "react";
-import logo from "../../images/fileicon.png"
+import logo from "../../images/PigIcon.png"
 import {Link} from "react-router-dom";
 
 export class NavBar extends Component {
     render() {
         return (
 
-            <div className="p-5 bg-[#444444] flex justify-between">
-                <h1 className="text-1xl text-black">Shop</h1>
-                <img className="h-5 w-5 " src={logo} alt=""/>
+            <div className="p-6 bg-pink-400 flex justify-between">
+                <div className="flex">
+                    <img className="h-16" src={logo} alt=""/>
+                    <h1 className="pt-2 text-pink-700 font-bold text-4xl mt-2 ml-3">Piggy</h1>
+                </div>
+
                 <ul className="list-none flex mt-1">
                     <li className="mr-2 text-[11px] text-white">
                         <Link to="/">Home</Link>
