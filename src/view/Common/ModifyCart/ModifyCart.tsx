@@ -20,36 +20,41 @@ export class ModifyCart extends Component <ModifyCartProps , ModifyCartState>{
         }
     }
 
-    ComponentDidMount(){
+    componentDidMount(): void {
         const {itemCount} = this.state;
 
-        if (this.props.data.isAdded){
-            if (!ModifyCart.itemList.find(item => item.product.id === this.props.data.product.id)){
-                ModifyCart.itemList.push(
-                    {
-                        product: this.props.data.product,
-                        itemCount: itemCount
-                    }
-                )
+        if(this.props.data.isAdded){
+            if(!ModifyCart.itemList.find(item => item.product.id === this.props.data.Product.id)){
+                ModifyCart.itemList.push({product:this.props.data.Product, itemCount: itemCount})
             }
         }
-        console.log(ModifyCart.itemList);
     }
 
+    componentDidUpdate(prevProps: Readonly<ModifyCartProps>, prevState: Readonly<ModifyCartState>, snapshot?: any): void {
+
+        let {itemCount} = this.state
+        let item = ModifyCart.itemList.find(item => item.product.id === this.props.data.product.id)
+
+        //@ts-ignore
+        let index = ModifyCart.ItemsList.indexOf(item);
+        ModifyCart.itemList.splice(index);
+        ModifyCart.itemList.push({product:this.props.data.Product, itemCount: this.state.itemCount})
+    }
     render() {
 
-        let {itemCount} = this.state;
+        const itemCount = this.state.itemCount;
 
         const onDecreaseItemCount = () => {
-            if (itemCount > 1) {
-                this.setState({itemCount: --itemCount})
-            }else {
-                alert("Item Count can't be less than 1")
+            if(itemCount>0){
+                this.setState({itemCount:itemCount-1})
+            }
+            else{
+                alert("Item count cannot be less than 0")
             }
         }
 
         const onIncreaseItemCount = () => {
-            this.setState({itemCount: ++itemCount})
+            this.setState({itemCount:itemCount+1})
         }
 
         return (
