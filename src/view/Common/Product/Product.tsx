@@ -36,7 +36,7 @@ export class Product extends Component<ProductProps, ProductState> {
                     <h2 className="bg-pink-950 text-white group-hover:bg-pink-300 group-hover:text-black text-center font-bold rounded-xl w-24 pt-1">{data.currency} {data.price}</h2>
                     {
                         this.state.isActive ?
-                           <ModifyCart></ModifyCart>
+                           <ModifyCart data={{product: data, isActive: this.state.isActive}}/>
                             : <button
                                 className="bg-pink-950 text-white group-hover:bg-pink-300 group-hover:text-black text-center font-bold rounded-xl w-28 h-8 pt-1 ml-7"
                                 onClick={this.addToCartOnClick}>Add To Cart
