@@ -1,14 +1,27 @@
 import {Component} from "react";
 import Img1 from "../../../images/pig.png";
+import {ModifyCart} from "../ModifyCart/ModifyCart";
 
 interface ProductProps {
     data: any
 }
-export class Product extends Component<ProductProps>{
+
+interface ProductState {
+    isActive: boolean
+}
+
+export class Product extends Component<ProductProps, ProductState> {
+    constructor(props:ProductProps) {
+        super(props);
+        this.state = {
+            isActive: false
+        }
+    }
+
     render() {
 
         const {data} = this.props;
-        const image:string = "../../images/" + data.image;
+        const image: string = "../../images/" + data.image;
 
 
         return (
@@ -21,12 +34,24 @@ export class Product extends Component<ProductProps>{
                     dictum.</p>
                 <div className="flex">
                     <h2 className="bg-pink-950 text-white group-hover:bg-pink-300 group-hover:text-black text-center font-bold rounded-xl w-24 pt-1">{data.currency} {data.price}</h2>
-                    <button
-                        className="bg-pink-950 text-white group-hover:bg-pink-300 group-hover:text-black text-center font-bold rounded-xl w-28 h-8 pt-1 ml-7">Add
-                        To Cart
-                    </button>
+                    {
+                        this.state.isActive ?
+                           <ModifyCart></ModifyCart>
+                            : <button
+                                className="bg-pink-950 text-white group-hover:bg-pink-300 group-hover:text-black text-center font-bold rounded-xl w-28 h-8 pt-1 ml-7"
+                                onClick={this.addToCartOnClick}>Add To Cart
+                            </button>
+                    }
                 </div>
             </div>
-        );
+        )
+            ;
+    }
+
+    private addToCartOnClick = () => {
+        this.setState({isActive: true}, () => {
+            console.log(this.state.isActive);
+            alert(this.state.isActive)
+        })
     }
 }
