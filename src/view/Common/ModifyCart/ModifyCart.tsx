@@ -20,6 +20,22 @@ export class ModifyCart extends Component <ModifyCartProps , ModifyCartState>{
         }
     }
 
+    ComponentDidMount(){
+        const {itemCount} = this.state;
+
+        if (this.props.data.isAdded){
+            if (!ModifyCart.itemList.find(item => item.product.id === this.props.data.product.id)){
+                ModifyCart.itemList.push(
+                    {
+                        product: this.props.data.product,
+                        itemCount: itemCount
+                    }
+                )
+            }
+        }
+        console.log(ModifyCart.itemList);
+    }
+
     render() {
 
         let {itemCount} = this.state;
