@@ -24,6 +24,7 @@ app.use(cookieParser());
 //static path define
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Path of route
 app.use('/', indexRouter);
 app.use('/products', productsRouter);
 
