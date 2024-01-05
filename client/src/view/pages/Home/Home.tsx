@@ -8,7 +8,7 @@ export class Home extends Component {
         super(props);
         this.state = {
             data: [],
-        };
+        }
     }
 
     componentDidMount() {
@@ -19,9 +19,8 @@ export class Home extends Component {
         try {
             const response = await fetch("./product-data.json");
             const jsonData = await response.json();
-            this.setState({data: jsonData});
-
-        }catch (error){
+            this.setState({ data: jsonData });
+        } catch (error) {
             console.log("Error Fetching Data");
         }
     };

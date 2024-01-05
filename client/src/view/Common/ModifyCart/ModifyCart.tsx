@@ -16,53 +16,66 @@ export class ModifyCart extends Component <ModifyCartProps , ModifyCartState>{
     constructor(props:ModifyCartProps) {
         super(props);
         this.state = {
-            itemCount:0
+            itemCount:1
         }
     }
 
-    componentDidMount(): void {
-        const {itemCount} = this.state;
+    componentDidMount(){
+        const {itemCount} = this.state
 
-        if(this.props.data.isAdded){
-            if(!ModifyCart.itemList.find(item => item.product.id === this.props.data.Product.id)){
-                ModifyCart.itemList.push({product:this.props.data.Product, itemCount: itemCount})
+        if (this.props.data.isAdded){
+            if (ModifyCart.itemList.find(item =>item.product.id === this.props.data.product.id)){
+                ModifyCart.itemList.push(
+                    {
+                        product: this.props.data.product,
+                        itemCount: itemCount
+                    }
+                )
             }
         }
+        console.log(ModifyCart.itemList);
     }
 
-    componentDidUpdate(prevProps: Readonly<ModifyCartProps>, prevState: Readonly<ModifyCartState>, snapshot?: any): void {
+    componentDidUpdate(prevProps: Readonly<ModifyCartProps>, prevState: Readonly<ModifyCartState>, snapshot?: any) {
 
-        let {itemCount} = this.state
-        let item = ModifyCart.itemList.find(item => item.product.id === this.props.data.product.id)
+        let {itemCount} = this.state;
 
-        //@ts-ignore
-        let index = ModifyCart.ItemsList.indexOf(item);
-        ModifyCart.itemList.splice(index);
-        ModifyCart.itemList.push({product:this.props.data.Product, itemCount: this.state.itemCount})
+        let item = ModifyCart.itemList.find(
+            item => item.product.id === this.props.data.product.id
+        );
+
+        // @ts-ignore
+        let index = ModifyCart.itemList.indexOf(item);
+
+        ModifyCart.itemList.slice(index, 1);
+
+        ModifyCart.itemList.push({
+            product:this.props.data.product,
+            itemCount: itemCount
+        })
+
     }
     render() {
 
-        const itemCount = this.state.itemCount;
+        let {itemCount} =this.state
 
-        const onDecreaseItemCount = () => {
-            if(itemCount>0){
-                this.setState({itemCount:itemCount-1})
-            }
-            else{
-                alert("Item count cannot be less than 0")
-            }
+        let onDecreaseItemCount = ()=>{
+            if (this.state.itemCount > 1){
+                this.setState({itemCount: --itemCount})
+            }else {}
         }
 
-        const onIncreaseItemCount = () => {
-            this.setState({itemCount:itemCount+1})
+        let onIncreaseItemCount = ()=>{
+            this.setState({itemCount: ++itemCount})
         }
+
 
         return (
             <div
                 className="bg-pink-900 text-white group-hover:bg-pink-300 group-hover:text-black text-center font-bold rounded-xl w-28 h-8 pt-1 ml-7">
-                <button className="float-left text-[8px] bg-pink-200 rounded-lg h-5 w-5" onClick={onDecreaseItemCount}>-</button>
+                <button className="float-left pl-3 text-xl -mt-1" onClick={onDecreaseItemCount}>-</button>
                 <small className="text-xl">{itemCount}</small>
-                <button className="float-right text-[8px] bg-pink-200 rounded-lg h-5 w-5" onClick={onIncreaseItemCount}>+</button>
+                <button className="float-right pr-3 text-2xl -mt-1" onClick={onIncreaseItemCount}>+</button>
 
             </div>
         );

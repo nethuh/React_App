@@ -22,4 +22,6 @@ const productList  = [
     }
 ];
 
-module.exports = [productList];
+const test = [];
+
+module.exports = [productList , test];
