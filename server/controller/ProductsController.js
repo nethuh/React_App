@@ -31,6 +31,32 @@ const ProductsController = {
 
     },
 
+    UpdateProduct :async function (req, res, next){
+        try {
+            const productID = req.params.id;
+            const productData = req.body;
+            const updateProduct
+            = Product.findOneAndUpdate({
+                id:productID
+            },
+                productData,
+                {new: true});
+
+            if (!updateProduct){
+                return res.status(404).json({error:'Product not found'});
+            }
+            res.status(200).json(updateProduct);
+
+        } catch (err){
+            console.error(err);
+            res.status(500)
+                .json({ error:
+                        'Something went wrong'})
+        }
+
+
+    },
+
 
 
     SaveProduct :async function (req, res, next){

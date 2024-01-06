@@ -12,4 +12,6 @@ router.post('/save', ProductsController.SaveProduct);
 
 router.get('/find/id', ProductsController.GetProduct);
 
+router.put('/update/:id', ProductsController.UpdateProduct);
+
 module.exports = router;
