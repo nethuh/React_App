@@ -10,4 +10,6 @@ router.get('/all', ProductsController.GetAllProducts);
 
 router.post('/save', ProductsController.SaveProduct);
 
+router.get('/find/id', ProductsController.GetProduct);
+
 module.exports = router;

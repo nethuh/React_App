@@ -15,6 +15,24 @@ const ProductsController = {
         }
     },
 
+    GetProduct :async function (req, res, next){
+        try {
+            const ProductID = req.params.id;
+            const product = await Product.find({id:ProductID})
+
+            res.status(200).json(product);
+        } catch (err){
+            console.error(err);
+            res.status(500)
+                .json({ error:
+                        'Something went wrong'})
+        }
+
+
+    },
+
+
+
     SaveProduct :async function (req, res, next){
         try {
             const ProductData = req.body;
