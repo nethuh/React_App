@@ -17,13 +17,17 @@ const ProductModel = mongoose.Schema(
                 require: true,
                 type: Number
         },
-        "currency": "LKR",
+        "currency": {
+                require: true,
+                type: String
+        },
         "image": {
                 require : true,
                 type: String
-        }
+        },
 
-    }
+    },
+    {versionKey: false}
 );
 
 const Product= mongoose .model('Product', ProductModel);
